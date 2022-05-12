@@ -1,0 +1,19 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: goserver-service #nome do service, tem -service so pra ficar explicito
+  namespace: default
+spec:
+  selector: #filtra todos pods que vão estar incorporando no servico
+    app: goserver
+  type: ClusterIP #4 tipos  ClusterIP,NodePort, LoadBalancer, HeadlessServer
+  ports:
+  - name: goserver-service
+    protocol: TCP    #tipo do procotolo
+    port: 80     #porta da aplicação ou POD
+    #as linhas acima criou somente o service para acesso ao pod ainda acesso 
+    #é somente interno
+    #targetPort: 5000
+    #nodePort: 30001
+

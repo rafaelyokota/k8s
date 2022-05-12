@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goserver
+  labels:
+    app: goserver
+spec:
+  selector:
+    matchLabels:
+      app: goserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "goserver"
+    spec:
+      containers:
+        - name: goserver
+          image: "rafaelyokota/hellogo:latest"
+          resources:
+            requests: #-> requisitos minimos , reserva esse recursos para o POD
+              cpu: "0.05" #vCpu -> 1000m(milicores) share de cpu, -> 500m(ou 0.5 = porcentagem).
+              memory: 20Mi #fazer teste para achar esses valores, benchmarks ,teste de stress
+            limits:
+              cpu: "0.05"
+              memory: 25Mi
+          
